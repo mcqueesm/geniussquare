@@ -3,9 +3,9 @@ matplotlib.use("Agg")
 import matplotlib.pyplot
 from django.shortcuts import render
 from django.views.generic import TemplateView
-import app.catalog.dance.pentomino as pentomino
-import app.catalog.dance.dance as dance
-from app.catalog.forms import IndexForm
+import catalog.dance.pentomino as pentomino
+import catalog.dance.dance as dance
+from catalog.forms import IndexForm
 import numpy as np
 from matplotlib.backends.backend_pdf import PdfPages
 
