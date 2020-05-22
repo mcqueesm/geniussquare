@@ -1,0 +1,23 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1 class="text-center" >Genius Square Solver</h1>
+<form method="post" class="mb-3" style="display: flex; flex-direction: column; align-items: center">
+  <div class="form-group" style="display: flex; flex-direction: column; align-items: center">
+    <label for="exampleInputEmail1">Enter dice combination:</label>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <small id="emailHelp" class="form-text text-muted">E.g. A1 B2 C3 D4 E5 F6 A2</small>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+  
+</form>
+
+
+{% if source %}
+{% load static %}
+<p class="text-center">Number of Solutions is {{ number }}</p>
+<iframe src="{% static 'solutions.pdf' %}" width="100%" height="500px">
+</iframe>
+{% endif %}
+{% endblock %}
