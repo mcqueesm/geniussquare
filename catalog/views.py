@@ -3,8 +3,8 @@ matplotlib.use("Agg")
 import matplotlib.pyplot
 from django.shortcuts import render
 from django.views.generic import TemplateView
-from . import dance.pentomino as pentomino
-from . import dance.dance as dance
+from .dance import pentomino as pentomino
+from .dance import dance as dance
 from .forms import IndexForm
 import numpy as np
 from matplotlib.backends.backend_pdf import PdfPages
