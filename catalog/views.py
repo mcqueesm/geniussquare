@@ -8,6 +8,7 @@ import dance.dance as dance
 from catalog.forms import IndexForm
 import numpy as np
 from matplotlib.backends.backend_pdf import PdfPages
+import random
 
 # Create your views here.
 # Render the HTML template index.html with the data in the context variable
@@ -25,7 +26,20 @@ class IndexView(TemplateView):
             text = form.cleaned_data['post']
        
         snum = self.solve(text)
-        args = {'form': form, 'source': True, 'number': snum}
+        paths = [
+            'solutions0.png',
+            'solutions1.png',
+            'solutions2.png',
+            'solutions3.png',
+            'solutions4.png',
+            'solutions5.png',
+            'solutions6.png',
+            'solutions7.png',
+            'solutions8.png',
+            'solutions9.png'
+
+        ]
+        args = {'form': form, 'source': True, 'number': snum, 'paths': paths}
         return render(request, self.template_name, args)
 
     def solve(self, dice):
@@ -47,18 +61,18 @@ class IndexView(TemplateView):
         mat = np.loadtxt('sub_problem_1')
         dl = dance.DancingLinks(mat)
         solution = dl.generate_all_solutions()
+        solset = random.sample(solution, 10)
+        print('solset length is ', len(solset))
         snum = len(solution)
-        cols = 5
-        #rows = 20
-        rows = snum//cols+1
-        fig = matplotlib.pyplot.figure(figsize=(8, rows*2))
-        fig.tight_layout()
-        #fig.suptitle('Number of solutions for \n {s}: \n {t}'.format(s= dice, t=snum), fontsize=40)
-        for i in range(1, snum+1):
-            print("in for loop ", i)
-            pentomino.display_solution(b, solution[i-1], fig, rows, cols, i)
         
-        fig.savefig("catalog/static/solutions.pdf", bbox_inches = 'tight', pad_inches = 0)
+        
+        #fig.suptitle('Number of solutions for \n {s}: \n {t}'.format(s= dice, t=snum), fontsize=40)
+        for i, x in enumerate(solset):
+            fig = matplotlib.pyplot.figure()
+            pentomino.display_solution(b, x, i, fig)
+            matplotlib.pyplot.close()
+        
+        
         #pdf = PdfPages('catalog/static/solutions.pdf')
         #pdf.savefig()
 

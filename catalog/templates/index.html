@@ -16,8 +16,16 @@
 
 {% if source %}
 {% load static %}
-<p class="text-center">Number of Solutions is {{ number }}</p>
-<iframe src="{% static 'solutions.pdf' %}" width="100%" height="500px">
-</iframe>
+<h3 class="text-center">Number of Solutions is {{ number }}</h3>
+<div style="display: flex; flex-direction: column; align-items: center">
+<h2 class='mb-3'>10 Random Solutions:</h2>
+{% for path in paths %}
+
+<h2>Solution {{ forloop.counter }}</h2>
+<div >
+<img src="{% static path %}" />
+</div>
+{% endfor %}
+</div>
 {% endif %}
 {% endblock %}

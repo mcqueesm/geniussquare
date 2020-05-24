@@ -156,7 +156,8 @@ def load_solution(filename):
 
     return solution
 
-def display_solution(board, solution, fig, rows, cols, index):
+def display_solution(board, solution, index, fig):
+    print('in display solution ', index)
     colored = np.zeros((board.shape[0], board.shape[1], 4))
     labels = exact_cover_row_labels(board)
 
@@ -173,9 +174,11 @@ def display_solution(board, solution, fig, rows, cols, index):
                 if v:
                     colored[i+r, j+c] = color
 
-    fig.add_subplot(rows, cols, index).title.set_text('Solution {i}'.format(i=index))
+   
     matplotlib.pyplot.imshow(colored, interpolation='nearest')
     matplotlib.pyplot.axis('off')
+    fig.savefig("catalog/static/solutions{0}.png".format(index))
+   
 
 dice = [[(1, 3), (3, 2), (2, 3), (2, 2), (3, 3), (4, 2)],
         [(5, 2), (0, 0), (4, 1), (3, 0), (2, 0), (3, 1)],
@@ -202,7 +205,7 @@ def diceGen():
                                 roll[6]=dice[6][g]
                                 yield roll
 
-
+"""
 if __name__ == '__main__':
     numDic = {
         'A': 0,
@@ -218,7 +221,7 @@ if __name__ == '__main__':
     dlist = inputstr.split()
     for x in dlist:
         boards['hollow_chess_board'][int(numDic[x[0]]), int(x[1])-1] = 0
-    """
+    
     allSolutions = {'solutions': []}
     
 
@@ -241,7 +244,7 @@ if __name__ == '__main__':
     with open('sols.json', 'w', encoding='utf-8') as f:
         json.dump(allSolutions, f, ensure_ascii=False, indent=4)
 
-    """
+    
     print('Saving problem...')
     np.savetxt('sub_problem_1', exact_cover_problem(boards['hollow_chess_board']).astype(np.int), fmt='%r')
     print('Solving problem...')
@@ -261,4 +264,4 @@ if __name__ == '__main__':
 
     pdf.close()
     #matplotlib.pyplot.show()
-    
+    """
