@@ -1,0 +1,36 @@
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.board{
+    position: relative;
+    right: 15px;
+    width: 270px;
+}
+.col{
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+}   
+.row{
+    width: 270px;
+    height: 30px;
+}
+.row-label{
+    border-top: none;
+    border-bottom: none;
+}
+
+.col-label{
+    border-left: none;
+    border-right: none;
+}
+
+#id_post{
+    display: none;
+}

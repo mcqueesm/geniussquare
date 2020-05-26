@@ -22,10 +22,13 @@ class IndexView(TemplateView):
 
     def post(self, request):
         form = IndexForm(request.POST)
+        
         if form.is_valid():
             text = form.cleaned_data['post']
        
         snum = self.solve(text)
+    
+        
         paths = [
             'solutions0.png',
             'solutions1.png',

@@ -2,14 +2,88 @@
 
 {% block content %}
 <h1 class="text-center" >Genius Square Solver</h1>
-<form method="post" class="mb-3" style="display: flex; flex-direction: column; align-items: center">
+<div class="container-fluid board" >
+  {% load my_filters %}
+
+    <div class="row">
+      <div class = "col row-label col-label"></div>
+      <div class = "col col-label">1</div>
+      <div class = "col col-label">2</div>
+      <div class = "col col-label">3</div>
+      <div class = "col col-label">4</div>
+      <div class = "col col-label">5</div>
+      <div class = "col col-label">6</div>
+    </div>
+    <div class="row">
+      <div id="A0" class="col row-label">A</div>
+      {% for i in 6|temprange %}
+      {% with y=forloop.counter|stringformat:"s" %}
+      {% with idstr="A"|add:y %}
+      <div id = "{{ idstr }}" class="col" onclick="boardClick(this.id);"></div>
+      {% endwith %}
+      {% endwith %}
+      {% endfor %}
+    </div>
+    <div class="row">
+      <div id="B0" class="col row-label">B</div>
+      {% for i in 6|temprange %}
+      {% with y=forloop.counter|stringformat:"s" %}
+      {% with idstr="B"|add:y %}
+      <div id = "{{ idstr }}" class="col" onclick="boardClick(this.id);"></div>
+      {% endwith %}
+      {% endwith %}
+      {% endfor %}
+    </div>
+    <div class="row">
+      <div id = "C0" class="col row-label">C</div>
+      {% for i in 6|temprange %}
+      {% with y=forloop.counter|stringformat:"s" %}
+      {% with idstr="C"|add:y %}
+      <div id = "{{ idstr }}" class="col" onclick="boardClick(this.id);"></div>
+      {% endwith %}
+      {% endwith %}
+      {% endfor %}
+    </div>
+    <div class="row">
+      <div id = "D0" class="col row-label">D</div>
+      {% for i in 6|temprange %}
+      {% with y=forloop.counter|stringformat:"s" %}
+      {% with idstr="D"|add:y %}
+      <div id = "{{ idstr }}" class="col" onclick="boardClick(this.id);"></div>
+      {% endwith %}
+      {% endwith %}
+      {% endfor %}
+    </div>
+    <div class="row">
+      <div id = "E0" class="col row-label">E</div>
+      {% for i in 6|temprange %}
+      {% with y=forloop.counter|stringformat:"s" %}
+      {% with idstr="E"|add:y %}
+      <div id = "{{ idstr }}" class="col" onclick="boardClick(this.id);"></div>
+      {% endwith %}
+      {% endwith %}
+      {% endfor %}
+    </div>
+    <div class="row">
+      <div id = "F0" class="col row-label">F</div>
+      {% for i in 6|temprange %}
+      {% with y=forloop.counter|stringformat:"s" %}
+      {% with idstr="F"|add:y %}
+      <div id = "{{ idstr }}" class="col" onclick="boardClick(this.id);"></div>
+      {% endwith %}
+      {% endwith %}
+      {% endfor %}
+    </div>
+  
+</div>
+<form id="form1" method="post" class="mb-3" style="display: flex; flex-direction: column; align-items: center">
   <div class="form-group" style="display: flex; flex-direction: column; align-items: center">
     <label for="exampleInputEmail1">Enter dice combination:</label>
     {% csrf_token %}
     {{ form.as_p }}
     <small id="emailHelp" class="form-text text-muted">E.g. A1 B2 C3 D4 E5 F6 A2</small>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary" >Submit</button>
   
 </form>
 
