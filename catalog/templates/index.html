@@ -89,18 +89,20 @@
 </form>
 
 
-{% if source %}
+{% if source == 1  %}
 {% load static %}
 <p class="text-center">Number of Solutions is {{ number }}</p>
 <div style="display: flex; flex-direction: column; align-items: center">
 <h3 class='mb-3'>10 Random Solutions:</h3>
 {% for path in paths %}
 
-<p>Solution {{ forloop.counter }}</p>
+<p class="text-center">Solution {{ forloop.counter }}</p>
 <div >
 <img src="{% static path %}" style="max-width:350px; width: 90vw; height: auto"/>
 </div>
 {% endfor %}
 </div>
+{% elif source == 2 %}
+  <p class="text-center text-danger">This configuration has no solutions</p>
 {% endif %}
 {% endblock %}

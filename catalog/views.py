@@ -10,6 +10,7 @@ import numpy as np
 from matplotlib.backends.backend_pdf import PdfPages
 import random
 
+
 # Create your views here.
 # Render the HTML template index.html with the data in the context variable
 
@@ -25,8 +26,14 @@ class IndexView(TemplateView):
         
         if form.is_valid():
             text = form.cleaned_data['post']
-       
-        snum = self.solve(text)
+
+        snum = None
+        source = 1
+        try:
+            snum = self.solve(text)
+        except ValueError:
+            source = 2
+
     
         
         paths = [
@@ -42,7 +49,7 @@ class IndexView(TemplateView):
             'solutions9.png'
 
         ]
-        args = {'form': form, 'source': True, 'number': snum, 'paths': paths}
+        args = {'form': form, 'source': source, 'number': snum, 'paths': paths}
         return render(request, self.template_name, args)
 
     def solve(self, dice):
