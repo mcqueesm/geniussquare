@@ -177,7 +177,7 @@ def display_solution(board, solution, index, fig):
    
     matplotlib.pyplot.imshow(colored, interpolation='nearest')
     matplotlib.pyplot.axis('off')
-    fig.savefig("catalog/static/solutions{0}.png".format(index))
+    fig.savefig("catalog/static/solutions{0}.png".format(index), bbox_inches='tight',pad_inches = 0)
    
 
 dice = [[(1, 3), (3, 2), (2, 3), (2, 2), (3, 3), (4, 2)],

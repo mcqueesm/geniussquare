@@ -4,7 +4,8 @@
 <h1 class="text-center" >Genius Square Solver</h1>
 <div class="container-fluid board" >
   {% load my_filters %}
-
+    <p class="text-center">Click on the grid to place 7 pegs</br></p>
+    <p class="text-center text-danger" id="warning"></p>
     <div class="row">
       <div class = "col row-label col-label"></div>
       <div class = "col col-label">1</div>
@@ -78,26 +79,26 @@
 </div>
 <form id="form1" method="post" class="mb-3" style="display: flex; flex-direction: column; align-items: center">
   <div class="form-group" style="display: flex; flex-direction: column; align-items: center">
-    <label for="exampleInputEmail1">Enter dice combination:</label>
+    
     {% csrf_token %}
     {{ form.as_p }}
-    <small id="emailHelp" class="form-text text-muted">E.g. A1 B2 C3 D4 E5 F6 A2</small>
+    
   </div>
-  <button type="submit" class="btn btn-primary" >Submit</button>
+  <input type="button" value="Solve" onclick="submitForm();">
   
 </form>
 
 
 {% if source %}
 {% load static %}
-<h3 class="text-center">Number of Solutions is {{ number }}</h3>
+<p class="text-center">Number of Solutions is {{ number }}</p>
 <div style="display: flex; flex-direction: column; align-items: center">
-<h2 class='mb-3'>10 Random Solutions:</h2>
+<h3 class='mb-3'>10 Random Solutions:</h3>
 {% for path in paths %}
 
-<h2>Solution {{ forloop.counter }}</h2>
+<p>Solution {{ forloop.counter }}</p>
 <div >
-<img src="{% static path %}" style="width: 90vw; height: auto"/>
+<img src="{% static path %}" style="max-width:350px; width: 90vw; height: auto"/>
 </div>
 {% endfor %}
 </div>

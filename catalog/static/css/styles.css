@@ -1,5 +1,7 @@
 
 body{
+    background-color: black;
+    color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -11,8 +13,8 @@ body{
     width: 270px;
 }
 .col{
-    border-right: 2px solid black;
-    border-bottom: 2px solid black;
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
     width: 30px;
     height: 30px;
     padding: 0;
@@ -33,4 +35,8 @@ body{
 
 #id_post{
     display: none;
+}
+
+img{
+    margin-bottom: 10px;
 }
